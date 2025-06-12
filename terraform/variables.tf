@@ -1,4 +1,3 @@
-
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
@@ -6,18 +5,23 @@ variable "aws_region" {
 }
 
 variable "bucket_name" {
-  description = "S3 bucket name"
-  default     = "edson-resume-site-demo"  # 🔁 make this unique globally
+  description = "The name of the S3 bucket"
+  type        = string
+  default     = "edson-resume-site-demo"  # change to your unique bucket name
 }
 
 variable "mime_types" {
-  description = "MIME types for files"
+  description = "Map of file extensions to MIME types"
+  type        = map(string)
   default = {
     ".html" = "text/html"
     ".css"  = "text/css"
-    ".pdf"  = "application/pdf"
     ".js"   = "application/javascript"
+    ".pdf"  = "application/pdf"
     ".png"  = "image/png"
     ".jpg"  = "image/jpeg"
+    ".jpeg" = "image/jpeg"
+    ".gif"  = "image/gif"
   }
 }
+
