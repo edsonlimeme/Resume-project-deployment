@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edson Limeme – Resume</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Edson Limeme</h1>
+  <p>Cloud Support Engineer | Cybersecurity | AWS Certified</p>
+
+  <a href="assets/Edson-Limeme-Resume.pdf" download>Download Resume (PDF)</a>
+
+  <h2>Contact Me</h2>
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Your Message" required></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <p id="response-message"></p>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch('https://YOUR_API_GATEWAY_URL_HERE', {
+        method: 'POST',
+        body: JSON.stringify(data)
+      });
+
+      const msg = await res.text();
+      document.getElementById('response-message').textContent = msg;
+    });
+  </script>
+</body>
+</html>
