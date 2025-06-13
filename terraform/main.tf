@@ -44,7 +44,7 @@ resource "aws_s3_bucket_policy" "resume_site" {
 resource "aws_s3_object" "website_files" {
   for_each = fileset("${path.module}/../resume-site", "**/*.*")
 
-  bucket       = data.aws_s3_bucket.resume_site.id
+  bucket       = aws_s3_bucket.resume_site.id
   key          = each.key
   source       = "${path.module}/../resume-site/${each.key}"
   content_type = lookup(var.mime_types, regex("\\.[^.]+$", each.key), "text/plain")
